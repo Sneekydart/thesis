@@ -8,9 +8,8 @@ def Stir(Speed):
 
 # --- Function registry (dispatcher) ---
 FUNCTIONS = {
-    "Dispense": dispense,
-    "Stir": stir,
-    "multiply": multiply,
+    "Dispense": Dispense,
+    "Stir": Stir,
 }
 
 

@@ -1,0 +1,12 @@
+from adafruit_motorkit import MotorKit
+from time import sleep
+
+kit = MotorKit()
+
+# Move stepper motor
+for i in range(100):
+    kit.stepper1.onestep(direction=1, style=1)
+    sleep(0.01)
+
+# Release motor (important to avoid overheating)
+kit.stepper1.release()
