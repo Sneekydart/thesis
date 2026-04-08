@@ -5,6 +5,9 @@ def Dispense(Number, Amount, Rate):
 def Stir(Speed):
     print("stir speed", Speed)
 
+def Heat(Temperature):
+    print("Temperature", Temperature)
+
 
 # --- Function registry (dispatcher) ---
 FUNCTIONS = {
