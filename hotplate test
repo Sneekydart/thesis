@@ -10,16 +10,20 @@ ser = serial.Serial(
     timeout=2
 )
 
-# Correct packet for 50°C
-packet = bytes([0xFE, 0xB2, 0x00, 0x32, 0x00, 0xE4])
+# 50°C command
+cmd_50 = bytes([0xFE, 0xB2, 0x00, 0x32, 0x00, 0xE4])
 
-ser.write(packet)
+# 20°C command
+cmd_20 = bytes([0xFE, 0xB2, 0x00, 0x14, 0x00, 0xC6])
 
-time.sleep(0.5)
+# Send 50°C
+ser.write(cmd_50)
+print("Set to 50°C")
 
-response = ser.read(6)
+time.sleep(10)  # wait 10 seconds
 
-print("Raw:", response)
-print("Hex:", response.hex())
+# Send 20°C
+ser.write(cmd_20)
+print("Set to 20°C")
 
 ser.close()
