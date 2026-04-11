@@ -2,7 +2,7 @@ import serial
 import time
 
 ser = serial.Serial(
-    port='/dev/ttyUSB0',
+    '/dev/ttyUSB0',
     baudrate=9600,
     bytesize=8,
     parity='N',
@@ -10,20 +10,14 @@ ser = serial.Serial(
     timeout=2
 )
 
-# 50°C command
-cmd_50 = bytes([0xFE, 0xB2, 0x00, 0x32, 0x00, 0xE4])
+# HELLO command
+ser.write(bytes([0xFE, 0xA0, 0x00, 0x00, 0x00, 0xA0]))
 
-# 20°C command
-cmd_20 = bytes([0xFE, 0xB2, 0x00, 0x14, 0x00, 0xC6])
+time.sleep(0.2)
 
-# Send 50°C
-ser.write(cmd_50)
-print("Set to 50°C")
+response = ser.read(6)
 
-time.sleep(10)  # wait 10 seconds
-
-# Send 20°C
-ser.write(cmd_20)
-print("Set to 20°C")
+print("Raw:", response)
+print("Hex:", response.hex())
 
 ser.close()
