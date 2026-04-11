@@ -1,0 +1,11 @@
+dispense 1 50 100       
+stir 550
+heat 150
+heat 180
+heat 240
+heat 280
+dispense 2 0.45 2       
+wait 1200               
+heat 0                  
+wait 600                
+stir 0                  

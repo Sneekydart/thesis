@@ -1,24 +1,30 @@
 # --- Define your functions ---
-def Dispense(Number, Amount, Rate):
-    print(Number, Amount, Rate)
+def dispense(number, amount, rate):
+    print("pump", number, amount, rate)
 
-def Stir(Speed):
-    print("stir speed", Speed)
+def stir(speed):
+    print("stir speed", speed)
 
-def Heat(Temperature):
-    print("Temperature", Temperature)
+def heat(temperature):
+    print("temperature", temperature)
+
+def wait(seconds):
+    print("wait", seconds)
 
 
 # --- Function registry (dispatcher) ---
 FUNCTIONS = {
-    "Dispense": Dispense,
-    "Stir": Stir,
+    "dispense": dispense,
+    "stir": stir,
+    "heat": heat,
+    "wait": wait
 }
 
 
 # --- Executor ---
 def execute_commands(file_path):
     with open(file_path, "r") as file:
+        print("File name:", file_path)
         for line_num, line in enumerate(file, start=1):
             parts = line.strip().split()
 
@@ -39,4 +45,4 @@ def execute_commands(file_path):
 
 
 # --- Run it ---
-execute_commands("commands.txt")
+execute_commands("50nm Spherical AuNP")
