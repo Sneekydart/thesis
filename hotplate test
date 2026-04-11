@@ -1,23 +1,8 @@
 import serial
-import time
 
-ser = serial.Serial(
-    '/dev/ttyUSB0',
-    baudrate=9600,
-    bytesize=8,
-    parity='N',
-    stopbits=1,
-    timeout=2
-)
+ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 
-# HELLO command
-ser.write(bytes([0xFE, 0xA0, 0x00, 0x00, 0x00, 0xA0]))
-
-time.sleep(0.2)
-
-response = ser.read(6)
-
-print("Raw:", response)
-print("Hex:", response.hex())
-
-ser.close()
+while True:
+    data = ser.read(100)
+    if data:
+        print(data.hex())
