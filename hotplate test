@@ -1,15 +1,25 @@
 import serial
+import time
 
 ser = serial.Serial(
     port='/dev/ttyUSB0',
-    baudrate=9600,   # match your hot plate
+    baudrate=9600,   # MUST match device
     bytesize=8,
     parity='N',
     stopbits=1,
     timeout=1
 )
 
+# Example command (set 50°C)
 packet = bytes([0xFE, 0xB2, 0x01, 0xF4, 0x00, 0xA5])
 
 ser.write(packet)
+
+time.sleep(0.2)  # give device time to respond
+
+response = ser.read(64)  # read up to 64 bytes
+
+print("Raw:", response)
+print("Hex:", response.hex())
+
 ser.close()
