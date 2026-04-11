@@ -1,8 +1,8 @@
 import serial
 
 ser = serial.Serial(
-    port='COM3',        # change to your port
-    baudrate=9600,      # match your device
+    port='/dev/ttyUSB0',
+    baudrate=9600,   # match your hot plate
     bytesize=8,
     parity='N',
     stopbits=1,
