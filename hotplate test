@@ -1,8 +1,15 @@
 import serial
 
-ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+ser = serial.Serial(
+    port='COM3',
+    baudrate=9600,
+    bytesize=8,
+    parity='N',
+    stopbits=1,
+    timeout=1
+)
 
-while True:
-    data = ser.read(100)
-    if data:
-        print(data.hex())
+packet = bytes([0xFE, 0xB2, 0x01, 0xF4, 0x00, 0xA5])
+
+ser.write(packet)
+ser.close()
